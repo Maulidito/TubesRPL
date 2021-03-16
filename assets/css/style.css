@@ -1,17 +1,42 @@
+/* Homepage */
 .boxHome{
-    margin-top: 20px;
+    background: url("../img/hiace.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 40px;
+    min-height: 768px;
 }
 
+.formAndContact{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.contact{
+    flex: 1;
+    text-align: center;
+    align-self: center;
+    margin-right: 20px;
+}
+
+.formAndContact form{
+    flex: 3;
+}
+    
 .boxHome h1{
     text-align: center;
-    border: 1px solid black;
     padding: 20px;
     border-radius: 20px;
+    background: rgba(255, 255, 255, 0.7);
 }
 
 .boxFormSearch{
-    border: 1px solid black;
     margin: 10px auto;
     padding: 10px 20px;
     border-radius: 20px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.boxFormSearch h3{
+    text-align: center;
 }
