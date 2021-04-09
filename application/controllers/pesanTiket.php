@@ -34,7 +34,12 @@
         }
 
         public function hasilPencarian($tanggal,$asal,$tujuan,$penumpang){
-            $data['parameter'] = [$tanggal,$asal,$tujuan,$penumpang];
+            $data['keyPencarian'] = [
+                "tanggal" => $tanggal,
+                "kotaAsal" => $asal,
+                "kotaTujuan" => $tujuan,
+                "penumpang" => $penumpang
+            ];
             $data["hasilPencarian"] = $this->Main_Model->cariTiket($asal,$tujuan);
 
             $this->load->view("templates/header");

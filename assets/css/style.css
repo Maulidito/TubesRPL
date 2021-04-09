@@ -12,12 +12,15 @@ form label{
 }
 
 /* Homepage */
-.boxHome{
-    background: url("../img/home.jpg");
+.boxBackground{
     background-repeat: no-repeat;
     background-size: cover;
     padding-top: 40px;
     min-height: 768px;
+}
+
+.boxHome{
+    background: url("../img/home.jpg");
 }
 
 .formAndContact{
@@ -35,7 +38,7 @@ form label{
 .formAndContact form{
     flex: 3;
 }
-    
+
 .boxHome h1{
     text-align: center;
     margin-top: 5%;
@@ -44,13 +47,71 @@ form label{
     background: rgba(255, 255, 255, 0.7);
 }
 
-.boxFormSearch{
+.transparentBox{
     margin: 10px auto;
     padding: 10px 20px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.7);
 }
 
-.boxFormSearch h3{
+.formCariTiket h3{
+    text-align: center;
+}
+
+/* Hasil Pencarian */
+.boxHasilPencarian{
+    background: url("../img/hasilPencarian.jpg");
+}
+
+
+.headerHasilPencarian{
+    padding: 0;
+    /* agar row tidak melebihi container */
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.headerHasilPencarian h2{
+    font-size: 35px;
+}
+
+.infoCuaca{
+    background: rgba(54, 165, 236, 1);
+    border-radius: 0 20px 20px 0;
+}
+
+.infoCuaca img{
+    width: 100px;
+    height: 100px;
+}
+
+.infoCuaca .col{
+    text-align: center;
+    padding-top: 15px;
+    color: #fff;
+}
+
+.pilihTiket{
+    padding: 0;
+}
+
+.pilihTiket .col-sm-4{
+    background: #36A5EC;
+    border-radius: 20px 0px 20px 0px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.pilihTiket .col-sm-4 h5{
+    font-weight: normal;
+}
+
+.pilihTiket .list-group{
+    padding: 30px 20px;
+}
+
+.listTiket .col{
     text-align: center;
 }

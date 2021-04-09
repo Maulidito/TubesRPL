@@ -1,7 +1,7 @@
-<div class="boxHome">
+<div class="boxBackground boxHome">
     <div class="container">
         <h1>Selamat Datang</h1>
-        <div class="boxFormSearch">
+        <div class="transparentBox formCariTiket">
             <h3>Cari Tiket Keberangkatan</h3>
             <div class="formAndContact">
                 <div class="contact">
