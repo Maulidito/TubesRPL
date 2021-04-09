@@ -1,6 +1,19 @@
+/* Global */
+.nav-blue{
+    background: #36A5EC;
+}
+
+.formError{
+    color: red;
+}
+
+form label{
+    font-weight: bold;
+}
+
 /* Homepage */
 .boxHome{
-    background: url("../img/hiace.jpg");
+    background: url("../img/home.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     padding-top: 40px;
@@ -25,6 +38,7 @@
     
 .boxHome h1{
     text-align: center;
+    margin-top: 5%;
     padding: 20px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.7);
