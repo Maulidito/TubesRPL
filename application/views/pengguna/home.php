@@ -25,11 +25,12 @@
                         </select>
                         <?= form_error("kotaAsal") ?>
                     </div>
-                    <div class="col">
+                    <div class="col selectTujuan">
                         <label>Kota Tujuan</label>
                         <select name="kotaTujuan" id="kotaTujuan" class="form-control" disabled>
                             <option>Pilih</option>
                         </select>
+                        <div class="loader"></div>
                         <?= form_error("kotaTujuan") ?>
                     </div>
                 </div>
@@ -67,6 +68,8 @@
     $("#asal").change(function(){
         var asal = $("option:selected",this).attr("value")
 
+        // menampilkan animasi loading
+        $(".loader").attr("style","display:block")
         $.ajax({
             url : "<?= base_url('pesanTiket/getTujuan'); ?>",
             method : "GET",
@@ -75,6 +78,8 @@
             },
             dataType : "json",
             success:function(data){
+                // menghilangkan animasi loading
+                $(".loader").attr("style","display:none")
                 // menghapus data kota Tujuan sebelumnya agar data tidak double
                 $("#kotaTujuan option").remove();
                 $("#kotaTujuan").append($('<option>',{value : "",text : "Pilih"}))

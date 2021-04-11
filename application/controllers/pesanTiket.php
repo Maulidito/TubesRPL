@@ -5,6 +5,7 @@
                 parent::__construct();
                 $this->load->model("Main_Model");
                 $this->load->library("form_validation");
+                $this->load->helper("Custom");
         }
 
         public function index(){
