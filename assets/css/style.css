@@ -1,10 +1,26 @@
+/* Global */
+.nav-blue{
+    background: #36A5EC;
+}
+
+.formError{
+    color: red;
+}
+
+form label{
+    font-weight: bold;
+}
+
 /* Homepage */
-.boxHome{
-    background: url("../img/hiace.jpg");
+.boxBackground{
     background-repeat: no-repeat;
     background-size: cover;
     padding-top: 40px;
     min-height: 768px;
+}
+
+.boxHome{
+    background: url("../img/home.jpg");
 }
 
 .formAndContact{
@@ -22,21 +38,110 @@
 .formAndContact form{
     flex: 3;
 }
-    
+
 .boxHome h1{
     text-align: center;
+    margin-top: 5%;
     padding: 20px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.7);
 }
 
-.boxFormSearch{
+.transparentBox{
     margin: 10px auto;
     padding: 10px 20px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.7);
 }
 
-.boxFormSearch h3{
+.formCariTiket h3{
     text-align: center;
+}
+
+.selectTujuan{
+    position: relative;
+}
+
+.loader{
+    display: none;
+    position: absolute;
+    margin-top: -7.7%;
+    margin-left: 82%;
+    border: lightgray 5px solid;
+    border-top: #36A5EC 5px solid;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin{
+    0%{
+        transform : rotate(0deg);
+    }
+    100%{
+        transform : rotate(360deg);
+    }
+}
+
+/* Hasil Pencarian */
+.boxHasilPencarian{
+    background: url("../img/hasilPencarian.jpg");
+}
+
+
+.headerHasilPencarian{
+    padding: 0;
+    /* agar row tidak melebihi container */
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.headerHasilPencarian h2{
+    font-size: 35px;
+}
+
+.infoCuaca{
+    background: rgba(54, 165, 236, 1);
+    border-radius: 0 20px 20px 0;
+}
+
+.infoCuaca img{
+    width: 110px;
+    height: 110px;
+}
+
+.infoCuaca .col{
+    text-align: center;
+    padding-top: 15px;
+    color: #fff;
+}
+
+.pilihTiket{
+    padding: 0;
+}
+
+.pilihTiket .col-sm-4{
+    background: #36A5EC;
+    border-radius: 20px 0px 20px 0px;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.pilihTiket .col-sm-4 h5{
+    font-weight: normal;
+}
+
+.pilihTiket .list-group{
+    padding: 30px 20px;
+}
+
+.listTiket .col{
+    text-align: center;
+}
+
+#keteranganCuaca{
+    text-transform: capitalize;
 }
