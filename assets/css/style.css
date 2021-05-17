@@ -11,16 +11,28 @@ form label{
     font-weight: bold;
 }
 
+.clearfix{
+    clear: both;
+}
+
+.btn-blue{
+    background: #36A5EC !important;
+    border-color: #36A5EC !important;
+}
+
+/* =========================== Pemesan ======================================== */
+
 /* Homepage */
 .boxBackground{
     background-repeat: no-repeat;
     background-size: cover;
-    padding-top: 40px;
+    padding-top: 20px;
     min-height: 768px;
 }
 
 .boxHome{
     background: url("../img/home.jpg");
+    background-position: center;
 }
 
 .formAndContact{
@@ -144,4 +156,144 @@ form label{
 
 #keteranganCuaca{
     text-transform: capitalize;
+}
+
+/* Form Pemesanan */
+.boxFormPemesanan{
+    background: url("../img/formPemesanan.png");
+    padding-bottom: 20px;
+}
+
+.formPemesanan{
+    padding: 20px;
+}
+
+.boxInfoTiket{
+    background: #fff;
+    border-radius: 10px;
+}
+
+.boxInfoTiket .row img{
+    width: 32px;
+    height: 32px;
+}
+
+.headerBiru{
+    border-radius: 10px 10px 0px 0px;
+    background: #36A5EC;
+    color: #fff;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+
+.headerInfoTiket{
+    padding-top: 10px;
+}
+
+.bodyInfoTiket{
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.bodyInfoTiket h6{
+    font-weight: normal;
+    color: #4A4747;
+}
+
+/* agar text jumlah kursi dapat berada ditengah */
+.bodyInfoTiket .col:nth-child(2) h5:first-child{
+    margin-top: 30%;
+}
+
+.formPemesanan .row .headerBiru{
+    padding: 5px;
+}
+
+.formDataPenumpang{
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+/* =============================== Admin ==================================== */
+
+/* Login */
+.loginBody{
+    background: #99CEF0;
+}
+
+.loginForm{
+    background: #fff;
+    min-height: 315px;
+    width: 406px;
+    margin: 10% auto 0 auto;
+    padding: 10px 20px;
+    box-shadow: 2px 4px 8px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 2px 4px 8px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 4px 8px 0px rgba(0,0,0,0.75);
+}
+
+.loginForm h1{
+    color: #36A5EC;
+    font-style: italic;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.loginForm label{
+    color: #36A5EC;
+    font-weight: normal;
+    margin-left: 5px;
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.loginForm input{
+    margin-top: 5px;
+}
+
+.loginForm .backToHome{
+    display: block;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* Tiket */
+.bodyAdmin{
+    background: #F6F6F6;
+}
+
+.headerAdmin{
+    margin: 30px 0px 10px 0px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.contentAdmin{
+    margin: 30px 0px 10px 0px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Pembayaran */
+
+.boxPembayaran{
+    padding: 20px;
+}
+
+.headerPembayaran{
+    padding: 5px;
+}
+
+.headerPembayaran h2{
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.bodyPembayaran{
+    text-align: center;
 }

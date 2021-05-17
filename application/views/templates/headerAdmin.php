@@ -11,17 +11,30 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   </head>
-  <body>
+  <body class="bodyAdmin">
     <nav class="navbar navbar-expand-lg navbar-dark nav-blue">
         <div class="container">
-            <a class="navbar-brand" href="<?= base_url("home")?>"><strong><i>Bus Jaya</i></strong></a>
+            <a class="navbar-brand" href="<?= base_url("Admin/index")?>"><strong><i>Bus Jaya</i></strong></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= base_url("home")?>">Pesan Tiket</a>
+                        <a class="nav-link" href="<?= base_url("Admin/index")?>">Tiket</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= base_url("Admin/pesanan")?>">Pesanan</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= base_url("Admin/bis")?>">Bis</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= base_url("Admin/pembayaran")?>">Pembayaran</a>
+                    </li>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= base_url("Admin/logout")?>">logout</a>
                     </li>
                 </ul>
             </div>
