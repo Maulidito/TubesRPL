@@ -48,7 +48,8 @@
         }
 
         public function pesanTiket(){
-            $idPesanan = "PS".$this->countTableRow("pesanan")+1;
+            
+            $idPesanan = "PS".($this->countTableRow("pesanan")+1);
             $pesanan = [
                 'id_pesanan' => $idPesanan,
                 'nama_pemesan' => $this->input->post("nama"),
@@ -81,7 +82,7 @@
         }
 
         public function konfirmasiPembayaran($idPesanan){
-            $idPembayaran = "PB".$this->countTableRow("pembayaran")+1;
+            $idPembayaran = "PB".($this->countTableRow("pembayaran")+1);
             $data = [
                 "id_pembayaran" => $idPembayaran,
                 "id_pesanan" => $idPesanan,
