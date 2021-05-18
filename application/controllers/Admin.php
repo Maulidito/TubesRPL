@@ -194,5 +194,41 @@
             }
         }
 
+        public function pesanan(){
+            // kondisi untuk mengecek apakah user sudah login atau belum
+            if($this->session->userdata("login")){
+                // mengambil data tiket dari database melalui model Admin_model dan menyimpan di array bernama data[tiket]
+                $data["pesanan"] = $this->Admin_model->getDataPesanan();
+
+                // fungsi untuk menampilkan header/navbar dari folder templates
+                $this->load->view("templates/headerAdmin");
+                // fungsi untuk menampilkan halaman tiket dari folder admin, dan mengoper array bernama data agar data dapat dipanggil di halaman tiket
+                $this->load->view("Admin/pesanan",$data);
+                // fungsi untuk menampilkan header/navbar dari folder templates
+                $this->load->view("templates/footer");
+            }else{
+                // mengarahkan ke halaman login jika admin belum melakukan login.
+                redirect("Admin/login");
+            }
+        }
+
+        public function detail_pesanan($id_pesanan){
+            // kondisi untuk mengecek apakah user sudah login atau belum
+            if($this->session->userdata("login")){
+                // mengambil data tiket dari database melalui model Admin_model dan menyimpan di array bernama data[tiket]
+                $data["detail_pesanan"] = $this->Admin_model->getDetailPesanan($id_pesanan);
+
+                // fungsi untuk menampilkan header/navbar dari folder templates
+                $this->load->view("templates/headerAdmin");
+                // fungsi untuk menampilkan halaman tiket dari folder admin, dan mengoper array bernama data agar data dapat dipanggil di halaman tiket
+                $this->load->view("Admin/detail_pesanan",$data);
+                // fungsi untuk menampilkan header/navbar dari folder templates
+                $this->load->view("templates/footer");
+            }else{
+                // mengarahkan ke halaman login jika admin belum melakukan login.
+                redirect("Admin/login");
+            }
+        }
+
     }
 ?>
