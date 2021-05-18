@@ -29,5 +29,15 @@
             // mengembalikkan semua data dari query yang telah dijalankan
             return $query->result_array();
         }
+
+        public function getDataBis(){
+            $query = $this->db->get("bis");
+            return $query->result_array();
+        }
+
+        public function getDataKursi($idBis){
+            $query = $this->db->get_where("kursi",array("id_bis"=>$idBis));
+            return $query->result_array();
+        }
     }
 ?>
