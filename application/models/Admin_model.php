@@ -15,7 +15,38 @@
             // mengembalikkan semua data dari query yang telah dijalankan
             return $query->result_array();
         }
+
+        public function tambahDataTiket(){
+            $tiket = [
+                "id_tiket" => $this->input->post("id_tiket"),
+                "id_bis" => $this->input->post("id_bis"),
+                "kota_asal" => $this->input->post("kota_asal"),
+                "kota_tujuan" => $this->input->post("kota_tujuan"),
+                "jam_keberangkatan" => $this->input->post("jam_keberangkatan"),
+                "harga" => $this->input->post("harga")
+            ];
+
+            return $this->db->insert("tiket",$tiket);
+        }
+
+        public function mengubahDataTiket($idTiket){
+            $tiket = [
+                "id_bis" => $this->input->post("id_bis"),
+                "kota_asal" => $this->input->post("kota_asal"),
+                "kota_tujuan" => $this->input->post("kota_tujuan"),
+                "jam_keberangkatan" => $this->input->post("jam_keberangkatan"),
+                "harga" => $this->input->post("harga")
+            ];
+
+            $this->db->set($tiket);
+            $this->db->where('id_tiket', $idTiket);
+            return $this->db->update('tiket');
+        }
         
+        public function menghapusDataTiket($idTiket){
+            return $this->db->delete("tiket",array("id_tiket" => $idTiket));
+        }
+
         public function getDataPesanan(){
             // menetapkan query mysql untuk mengambil seluruh data tiket dari tabel tiket
             $query = $this->db->get("pesanan");

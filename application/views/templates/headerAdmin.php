@@ -40,3 +40,20 @@
             </div>
         </div>
     </nav>
+    <div class="container">
+        <?php
+            if($this->session->flashdata("succNotice")){
+                echo '<div class="alert alert-success" role="alert">
+                '.$this->session->flashdata("succNotice").'
+                </div>';
+                $this->session->unset_userdata("succNotice");
+            }
+            
+            if($this->session->flashdata("errNotice")){
+                echo '<div class="alert alert-danger" role="alert">
+                '.$this->session->flashdata("errNotice").'
+                </div>';
+                $this->session->unset_userdata("errNotice");
+            }
+        ?>
+    </div>

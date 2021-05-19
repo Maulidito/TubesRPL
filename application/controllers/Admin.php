@@ -14,6 +14,7 @@
             if($this->session->userdata("login")){
                 // mengambil data tiket dari database melalui model Admin_model dan menyimpan di array bernama data[tiket]
                 $data["tiket"] = $this->Admin_model->getDataTiket();
+                $data["bis"] = $this->Admin_model->getDataBis();
 
                 // fungsi untuk menampilkan header/navbar dari folder templates
                 $this->load->view("templates/headerAdmin");
@@ -24,6 +25,45 @@
             }else{
                 // mengarahkan ke halaman login jika admin belum melakukan login.
                 redirect("Admin/login");
+            }
+        }
+
+        public function tambahDataTiket(){
+            if($this->session->userdata("login")){
+                if($this->Admin_model->tambahDataTiket()){
+                    $this->session->set_flashdata("succNotice","Data Tiket Berhasil Ditambahkan!");
+                    redirect("Admin/index");
+                }else{
+                    $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                    redirect("Admin/index");
+                }
+            }else{
+                redirect("Admin/login");
+            }
+        }
+
+        public function mengubahDataTiket(){
+            if($this->session->userdata("login")){  
+                $idTiket = $this->input->post("id_tiket");
+                if($this->Admin_model->mengubahDataTiket($idTiket)){
+                    $this->session->set_flashdata("succNotice","Data Tiket Berhasil Diubah");
+                    redirect("Admin/index");
+                }else{
+                    $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                    redirect("Admin/index");
+                }
+            }else{
+                redirect("Admin/login");
+            }
+        }
+
+        public function menghapusDataTiket($idTiket){
+            if($this->Admin_model->menghapusDataTiket($idTiket)){
+                $this->session->set_flashdata("succNotice","Data Tiket Berhasil Dihapus");
+                redirect("Admin/index");
+            }else{
+                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                redirect("Admin/index");
             }
         }
 
@@ -72,36 +112,6 @@
             $this->session->unset_userdata($userdata);
             // mengarahkan ke halaman login
             redirect("Admin/login");
-        }
-
-        public function tambahDataTiket(){
-            if($this->Admin_model->tambahDataTiket()){
-                $this->session->set_flashdata("succNotice","Data Tiket Berhasil Ditambahkan!");
-                redirect("Admin/index");
-            }else{
-                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
-            }
-        }
-
-        public function mengubahDataTiket($idTiket){
-            if($this->Admin_model->mengubahDataTiket($idTiket)){
-                $this->session->set_flashdata("succNotice","Data Tiket Berhasil Diubah");
-                redirect("Admin/index");
-            }else{
-                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
-            }
-        }
-
-        public function menghapusDataTiket($idTiket){
-            if($this->Admin_model->menghapusDataTiket($idTiket)){
-                $this->session->set_flashdata("succNotice","Data Tiket Berhasil Dihapus");
-                redirect("Admin/index");
-            }else{
-                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
-            }
         }
 
         public function tambahDataPesanan(){
