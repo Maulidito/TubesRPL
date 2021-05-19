@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2021 at 09:22 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: May 18, 2021 at 09:59 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -36,6 +35,13 @@ CREATE TABLE `admin` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `nama`, `no_telp`, `username`, `password`) VALUES
+('AD001', 'Andi', 812635417, 'admin', 'admin');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +53,17 @@ CREATE TABLE `bis` (
   `jumlah_kursi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `bis`
+--
+
+INSERT INTO `bis` (`id_bis`, `jumlah_kursi`) VALUES
+('BS001', 50),
+('BS002', 40),
+('BS003', 50),
+('BS004', 50),
+('BS005', 45);
+
 -- --------------------------------------------------------
 
 --
@@ -57,8 +74,16 @@ CREATE TABLE `detail_pesanan` (
   `id_pesanan` varchar(255) NOT NULL,
   `id_tiket` varchar(255) NOT NULL,
   `total_biaya` int(11) DEFAULT NULL,
-  `tgl_pemesanan` date DEFAULT NULL
+  `tgl_pemesanan` date DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_pesanan`
+--
+
+INSERT INTO `detail_pesanan` (`id_pesanan`, `id_tiket`, `total_biaya`, `tgl_pemesanan`) VALUES
+('PS1', 'TK001', 300000, '2021-05-06'),
+('PS2', 'TK007', 250000, '2021-05-10');
 
 -- --------------------------------------------------------
 
@@ -70,6 +95,13 @@ CREATE TABLE `kursi` (
   `nomor_kursi` varchar(255) NOT NULL,
   `id_bis` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kursi`
+--
+
+INSERT INTO `kursi` (`nomor_kursi`, `id_bis`) VALUES
+('A04', 'BS001');
 
 -- --------------------------------------------------------
 
@@ -83,8 +115,17 @@ CREATE TABLE `pembayaran` (
   `nama_pengirim` varchar(255) NOT NULL,
   `nomor_rekening` varchar(255) NOT NULL,
   `total_pembayaran` int(11) NOT NULL,
-  `tgl_pembayaran` date NOT NULL
+  `tgl_pembayaran` date NOT NULL,
+  `status_pembayaran` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_pembayaran`, `id_pesanan`, `nama_pengirim`, `nomor_rekening`, `total_pembayaran`, `tgl_pembayaran`, `status_pembayaran`) VALUES
+('PB1', 'PS1', 'Andika', '9872615441623', 300000, '2021-05-06', 'Menunggu Konfirmasi Admin'),
+('PB2', 'PS2', 'Rizki', '8274615442451623', 250000, '2021-05-10', 'Menunggu Konfirmasi Admin');
 
 -- --------------------------------------------------------
 
@@ -100,6 +141,14 @@ CREATE TABLE `pesanan` (
   `jumlah_penumpang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `pesanan`
+--
+
+INSERT INTO `pesanan` (`id_pesanan`, `nama_pemesan`, `no_telp`, `email`, `jumlah_penumpang`) VALUES
+('PS1', 'Andi', 2147483647, 'andi@gmail.com', 3),
+('PS2', 'Rizki', 2147483647, 'rizki@gmail.com', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -114,6 +163,18 @@ CREATE TABLE `tiket` (
   `harga` int(11) NOT NULL,
   `id_bis` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tiket`
+--
+
+INSERT INTO `tiket` (`id_tiket`, `kota_asal`, `kota_tujuan`, `jam_keberangkatan`, `harga`, `id_bis`) VALUES
+('TK001', 'Cirebon', 'Bandung', '12.00', 100000, 'BS001'),
+('TK002', 'Jakarta', 'Bandung', '13.00', 75000, 'BS002'),
+('TK003', 'Jakarta', 'Bandung', '20.00', 75000, 'BS002'),
+('TK004', 'Cirebon', 'Bandung', '15.00', 100000, 'BS001'),
+('TK006', 'Bandung', 'Garut', '08.00', 125000, 'BS005'),
+('TK007', 'Jakarta', 'Cirebon', '18.00', 125000, 'BS004');
 
 --
 -- Indexes for dumped tables
