@@ -9,12 +9,13 @@
                 <div class="contact">
                     <h3>Call Center</h3>
                     <h4>+62877 6154 1224</h4>
+                    
                 </div>
                 <!-- form cari tiket dengan action mengarah ke controller pesanTiket dengan method index -->
                 <?= form_open("pesanTiket/index") ?>
                 <!-- tag untuk membuat input tanggal keberangkatan -->
                 <div class="form-group">
-                    <label>Tanggal Keberangkatan</label>
+                    <label>Tanggal Keberangkatan  </label>
                     <input type="date" class="form-control" name="tanggal" id="tanggal" value="<?= set_value("tanggal") ?>">
                     <?= form_error("tanggal") ?>
                 </div>
@@ -25,6 +26,7 @@
                         <select name="kotaAsal" id="asal" class="form-control">
                             <option value="">Pilih</option>
                             <!-- isi dari select box didapatkan dari variabel data[kotaAsal] yang telah dioper di controller -->
+                            
                             <?php foreach($kotaAsal as $row): ?>
                                 <option value="<?= $row['kota_asal'] ?>"><?= $row['kota_asal'] ?></option>
                             <?php endforeach; ?>

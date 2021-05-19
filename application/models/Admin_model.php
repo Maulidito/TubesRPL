@@ -15,5 +15,29 @@
             // mengembalikkan semua data dari query yang telah dijalankan
             return $query->result_array();
         }
+        
+        public function getDataPesanan(){
+            // menetapkan query mysql untuk mengambil seluruh data tiket dari tabel tiket
+            $query = $this->db->get("pesanan");
+            // mengembalikkan semua data dari query yang telah dijalankan
+            return $query->result_array();
+        }
+
+        public function getDetailPesanan($id_pesanan){
+            // menetapkan query mysql untuk mengambil seluruh data tiket dari tabel tiket
+            $query = $this->db->get_where("detail_pesanan",array("id_pesanan" => $id_pesanan));
+            // mengembalikkan semua data dari query yang telah dijalankan
+            return $query->result_array();
+        }
+
+        public function getDataBis(){
+            $query = $this->db->get("bis");
+            return $query->result_array();
+        }
+
+        public function getDataKursi($idBis){
+            $query = $this->db->get_where("kursi",array("id_bis"=>$idBis));
+            return $query->result_array();
+        }
     }
 ?>
