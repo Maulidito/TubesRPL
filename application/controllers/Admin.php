@@ -115,32 +115,41 @@
         }
 
         public function tambahDataPesanan(){
-            if($this->Admin_model->tambahDataPesanan()){
-                $this->session->set_flashdata("succNotice","Data Pesanan Berhasil Ditambahkan!");
-                redirect("Admin/index");
+            if($this->session->userdata("login")){
+                if($this->Admin_model->tambahDataPesanan()){
+                    $this->session->set_flashdata("succNotice","Data Pesanan Berhasil Ditambahkan!");
+                    redirect("Admin/pesanan");
+                }else{
+                    $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                    redirect("Admin/pesanan");
+                }
             }else{
-                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
-            }
-        }
-
-        public function mengubahDataPesanan($idPesanan){
-            if($this->Admin_model->mengubahDataPesanan($idPesanan)){
-                $this->session->set_flashdata("succNotice","Data Pesanan Berhasil Diubah!");
-                redirect("Admin/index");
-            }else{
-                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
+                redirect("Admin/login");
             }
         }
 
         public function menghapusDataPesanan($idPesanan){
             if($this->Admin_model->menghapusDataPesanan($idPesanan)){
-                $this->session->set_flashdata("succNotice","Data Pesanan Berhasil Ditambahkan!");
-                redirect("Admin/index");
+                $this->session->set_flashdata("succNotice","Data Pesanan Berhasil Dihapus");
+                redirect("Admin/pesanan");
             }else{
                 $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
+                redirect("Admin/pesanan");
+            }
+        }
+
+        public function mengubahDataPesanan(){
+            if($this->session->userdata("login")){  
+                $idPesanan = $this->input->post("id_pesanan");
+                if($this->Admin_model->mengubahDataPesanan($idPesanan)){
+                    $this->session->set_flashdata("succNotice","Data Pesanan Berhasil Diubah");
+                    redirect("Admin/pesanan");
+                }else{
+                    $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                    redirect("Admin/pesanan");
+                }
+            }else{
+                redirect("Admin/login");
             }
         }
 
@@ -209,7 +218,7 @@
             if($this->session->userdata("login")){
                 // mengambil data tiket dari database melalui model Admin_model dan menyimpan di array bernama data[tiket]
                 $data["pesanan"] = $this->Admin_model->getDataPesanan();
-
+                $data["tiket"] = $this->Admin_model->getDataTiket();
                  // fungsi untuk menampilkan header/navbar dari folder templates
                  $this->load->view("templates/headerAdmin");
                  // fungsi untuk menampilkan halaman tiket dari folder admin, dan mengoper array bernama data agar data dapat dipanggil di halaman tiket
@@ -245,7 +254,6 @@
             if($this->session->userdata("login")){
                 // mengambil data tiket dari database melalui model Admin_model dan menyimpan di array bernama data[tiket]
                 $data["detail_pesanan"] = $this->Admin_model->getDetailPesanan($id_pesanan);
-
                 // fungsi untuk menampilkan header/navbar dari folder templates
                 $this->load->view("templates/headerAdmin");
                 // fungsi untuk menampilkan halaman tiket dari folder admin, dan mengoper array bernama data agar data dapat dipanggil di halaman tiket
@@ -257,6 +265,21 @@
                 redirect("Admin/login");
             }
 
+        }
+        
+        public function mengubahDetailPesanan(){
+            if($this->session->userdata("login")){  
+                $idPesanan = $this->input->post("id_pesanan");
+                if($this->Admin_model->mengubahDetailPesanan($idPesanan)){
+                    $this->session->set_flashdata("succNotice","Detail Pesanan Berhasil Diubah");
+                    redirect("Admin/detail_pesanan/$id_pesanan");
+                }else{
+                    $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                    redirect("Admin/detail_pesanan/$id_pesanan");
+                }
+            }else{
+                redirect("Admin/login");
+            }
         }
 
         public function kursi($idBis){

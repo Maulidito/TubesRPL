@@ -47,13 +47,70 @@
             return $this->db->delete("tiket",array("id_tiket" => $idTiket));
         }
 
+        public function tambahDataPesanan(){
+            $pesanan = [
+                "id_pesanan" => $this->input->post("id_pesanan"),
+                "nama_pemesan" => $this->input->post("nama_pemesan"),
+                "no_telp" => $this->input->post("no_telp"),
+                "email" => $this->input->post("email"),
+                "jumlah_penumpang" => $this->input->post("jumlah_penumpang")
+            ];
+
+            $detail_pesanan = [
+                "id_pesanan" => $this->input->post("id_pesanan"),
+                "id_tiket" => $this->input->post("id_tiket"),
+                "total_biaya" => $this->input->post("total_biaya"),
+                "tgl_pemesanan" => $this->input->post("tgl_pemesanan")
+            ];
+
+            return $this->db->insert("pesanan",$pesanan) && $this->db->insert("detail_pesanan",$detail_pesanan);
+        }
+
+        public function menghapusDataPesanan($idPesanan){
+            if ($this->db->delete("detail_pesanan",array("id_pesanan" => $idPesanan)) && $this->db->delete("pembayaran",array("id_pesanan" => $idPesanan))){
+                if ($this->db->delete("pesanan",array("id_pesanan" => $idPesanan))){
+                    return true;
+                }
+            }else{
+                return false;
+            }
+                        
+        }
+
+        public function mengubahDataPesanan($idPesanan){
+            $pesanan = [
+                "id_pesanan" => $this->input->post("id_pesanan"),
+                "nama_pemesan" => $this->input->post("nama_pemesan"),
+                "no_telp" => $this->input->post("no_telp"),
+                "email" => $this->input->post("email"),
+                "jumlah_penumpang" => $this->input->post("jumlah_penumpang")
+            ];
+
+            $this->db->set($pesanan);
+            $this->db->where('id_pesanan', $idPesanan);
+            return $this->db->update('pesanan');
+        }
+
+        public function mengubahDetailPesanan($idPesanan){
+            $detail_pesanan = [
+                "id_pesanan" => $this->input->post("id_pesanan"),
+                "id_tiket" => $this->input->post("id_tiket"),
+                "total_biaya" => $this->input->post("total_biaya"),
+                "tgl_pemesanan" => $this->input->post("tgl_pemesanan")
+            ];
+
+            $this->db->set($detail_pesanan);
+            $this->db->where('id_pesanan', $idPesanan);
+            return $this->db->update('detail_pesanan');
+        }
+
         public function getDataPesanan(){
             // menetapkan query mysql untuk mengambil seluruh data tiket dari tabel tiket
             $query = $this->db->get("pesanan");
             // mengembalikkan semua data dari query yang telah dijalankan
             return $query->result_array();
         }
-
+        
         public function getDetailPesanan($id_pesanan){
             // menetapkan query mysql untuk mengambil seluruh data tiket dari tabel tiket
             $query = $this->db->get_where("detail_pesanan",array("id_pesanan" => $id_pesanan));
