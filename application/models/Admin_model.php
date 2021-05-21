@@ -127,5 +127,59 @@
             $query = $this->db->get_where("kursi",array("id_bis"=>$idBis));
             return $query->result_array();
         }
+        public function tambahDataBis(){
+            $bis = [
+                "id_bis" => $this->input->post("id_bis"),
+                "jumlah_kursi" => $this->input->post("jumlah_kursi"),
+            ];
+            return $this->db->insert("bis",$bis) ;
+        }
+
+    public function mengubahDataBis($idBis){
+        $bis = [
+          
+            "jumlah_kursi" => $this->input->post("jumlah_kursi"),
+        ];
+        $this->db->set($bis);
+        $this->db->where('id_bis', $idBis);
+        return $this->db->update('bis');
     }
+
+    public function menghapusDataBis($idBis){
+        if($this->db->delete("bis",array("id_bis" => $idBis))) {
+            if ($this->db->delete("bis",array("id_bis" => $idBis))){
+                return true;
+            }
+        }else{
+            return false;
+        }              
+    }
+
+    public function tambahDataKursi(){
+        $kursi = [
+            "nomor_kursi" => $this->input->post("nomor_kursi"),
+            "id_bis" => $this->input->post("id_bis"),
+        ];
+        return $this->db->insert("kursi",$kursi) ;
+    }
+
+public function mengubahDataKursi($idKursi){
+    $kursi = [
+        "nomor_kursi" => $this->input->post("nomor_kursi"),
+    ];
+    $this->db->set($kursi);
+    $this->db->where('id_kursi', $idKursi);
+    return $this->db->update('kursi');
+}
+
+public function menghapusDataKursi($nomor_kursi,$id_bis){
+    if($this->db->delete("kursi",array("nomor_kursi" => $nomor_kursi))) {
+        if ($this->db->delete("kursi",array("id_bis" => $id_bis))){
+            return true;
+        }
+    }else{
+        return false;
+    }              
+}
+}
 ?>

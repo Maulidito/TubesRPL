@@ -153,65 +153,12 @@
             }
         }
 
-        public function tambahDataKursi(){
-            if($this->Admin_model->tambahDataKursi()){
-                $this->session->set_flashdata("succNotice","Data Kursi Berhasil Ditambahkan!");
-                redirect("Admin/index");
-            }else{
-                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
-            }
-        }
+     
 
-        public function mengubahDataKursi($idKursi){
-            if($this->Admin_model->mengubahDataKursi($idKursi)){
-                $this->session->set_flashdata("succNotice","Data Kursi Berhasil Diubah!");
-                redirect("Admin/index");
-            }else{
-                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
-            }
-        }
+   
+  
 
-        public function menghapusDataKursi($idKursi){
-            if($this->Admin_model->menghapusDataKursi($idKursi)){
-                $this->session->set_flashdata("succNotice","Data Kursi Berhasil Dihapus!");
-                redirect("Admin/index");
-            }else{
-                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
-            }
-        }
-
-        public function tambahDataBis(){
-            if($this->Admin_model->tambahDataTiket()){
-                $this->session->set_flashdata("succNotice","Data Bis Berhasil Ditambahkan!");
-                redirect("Admin/index");
-            }else{
-                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
-            }
-        }
-
-        public function mengubahDataBis($idBis){
-            if($this->Admin_model->mengubahDataBis($idBis)){
-                $this->session->set_flashdata("succNotice","Data Bis Berhasil Diubah!");
-                redirect("Admin/index");
-            }else{
-                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
-            }
-        }
-
-        public function menghapusDataBis($idBis){
-            if($this->Admin_model->menghapusDataBis($idBis)){
-                $this->session->set_flashdata("succNotice","Data Bis Berhasil Dihapus!");
-                redirect("Admin/index");
-            }else{
-                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/index");
-            }
-        }
+      
 
         public function pesanan(){
             // kondisi untuk mengecek apakah user sudah login atau belum
@@ -300,6 +247,88 @@
             }
 
         }
+        
+        public function tambahDataBis(){
+            if($this->session->userdata("login")){
+                if($this->Admin_model->tambahDataBis()){
+                    $this->session->set_flashdata("succNotice","Data Bis Berhasil Ditambahkan!");
+                    redirect("Admin/bis");
+                }else{
+                    $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                    redirect("Admin/bis");
+                }
+            }else{
+                redirect("Admin/login");
+            }
+        }    
+        
+        public function mengubahDataBis(){
+            if($this->session->userdata("login")){  
+                $idBis = $this->input->post("id_bis");
+                if($this->Admin_model->mengubahDataBis($idBis)){
+                    $this->session->set_flashdata("succNotice","Data Bis Berhasil Diubah");
+                    redirect("Admin/bis");
+                }else{
+                    $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                    redirect("Admin/bis");
+                }
+            }else{
+                redirect("Admin/login");
+            }
+        }
+    
+
+    public function menghapusDataBis($idBis){
+        if($this->Admin_model->menghapusDataBis($idBis)){
+            $this->session->set_flashdata("succNotice","Data Bis Berhasil Dihapus");
+            redirect("Admin/bis");
+        }else{
+            $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+            redirect("Admin/bis");
+        }
+    }
+
+
+    public function tambahDataKursi(){
+        if($this->session->userdata("login")){
+            if($this->Admin_model->tambahDataKursi()){
+                $this->session->set_flashdata("succNotice","Data Kursi Berhasil Ditambahkan!");
+                redirect("Admin/kursi");
+            }else{
+                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                redirect("Admin/kursi");
+            }
+        }else{
+            redirect("Admin/login");
+        }
+    }    
+    
+    public function mengubahDataKursi(){
+        if($this->session->userdata("login")){  
+            $idKursi = $this->input->post("id_kursi");
+            if($this->Admin_model->mengubahDataBis($idKursi)){
+                $this->session->set_flashdata("succNotice","Data Kursi Berhasil Diubah");
+                redirect("Admin/kursi");
+            }else{
+                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                redirect("Admin/kursi");
+            }
+        }else{
+            redirect("Admin/login");
+        }
+    }
+
+
+public function menghapusDataKursi($idKursi){
+    if($this->Admin_model->menghapusDataBis($idKursi)){
+        $this->session->set_flashdata("succNotice","Data Kursi Berhasil Dihapus");
+        redirect("Admin/Kursi");
+    }else{
+        $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+        redirect("Admin/Kursi");
+    }
+}
+    
 
     }
 ?>

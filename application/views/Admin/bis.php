@@ -38,7 +38,7 @@
                     <td><?= $i ?></td>
                     <td><?= $data["id_bis"] ?></td>
                     <td><?= $data["jumlah_kursi"] ?></td>
-                    <td><a href="<?= base_url("admin/kursi/$data[id_bis]")?>" class="btn btn-primary btn-success">Kursi</a>&nbsp;<button data-toggle="modal" data-target="#modalUpdate" class="btn btn-warning text-white btnUpdate">Update</button>&nbsp;<a href="" class="btn btn-danger">Delete</a></td>
+                    <td><a href="<?= base_url("admin/kursi/$data[id_bis]")?>" class="btn btn-primary btn-success">Kursi</a>&nbsp;<button data-toggle="modal" data-target="#modalUpdate" class="btn btn-warning text-white btnUpdate">Update</button>&nbsp;<a href="<?=base_url("admin/menghapusDataBis/$data[id_bis]")?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin')">Delete</a></td>
                 </tr>
             <?php 
                 $i++;
@@ -75,6 +75,7 @@
     </div>
   </div>
 </div>
+</div>
 
 <!-- Modal Update -->
 <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -87,27 +88,14 @@
         </button>
       </div>
       <div class="modal-body">
-        <?= form_open("Admin/updateDataBis") ?>
+        <?= form_open("Admin/mengubahDataBis") ?>
         <div class="form-group">
-            <label>Id Pesanan</label>
-            <input type="text" class="form-control" name="id_pesanan" id="id_pesanan" placeholder="Id Pesanan" readonly>
+            <label>Id Bis</label>
+            <input type="text" class="form-control" name="id_bis" id="id_bis" placeholder="Id bis" readonly>
         </div>
         <div class="form-group">
-            <label>Nama Pemesan</label>
-            <input type="text" class="form-control" name="nama_pemesan" id="nama_pemesan" placeholder="Nama Pemesan">
-        </div>
-        <div class="form-group">
-            <label>Nomor Telfon</label>
-            <input type="text" class="form-control" name="no_telp" id="no_telp" placeholder="Nomor Telfon">
-        </div>
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="email" id="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <label>Jumlah Penumpang</label>
-            <input type="text" class="form-control" name="jumlah_penumpang" id="jumlah_penumpang" placeholder="Jumlah Penumpang">
-        </div>
+            <label>Jumlah Kursi</label>
+            <input type="text" class="form-control" name="jumlah_kursi" id="jumlah_kursi">
       </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -115,7 +103,7 @@
         </div>
     </form>
     </div>
-  </div>
+  </div>`
 </div>
 
 <script>
@@ -123,17 +111,13 @@
         var tr = ($(this).parent()).parent()
 
         // mengambil data yang ada di tabel
-        var idPesanan = tr.children(":nth-child(2)").text()
-        var nama_pemesan = tr.children(":nth-child(3)").text()
-        var no_telp = tr.children(":nth-child(4)").text()
-        var email = tr.children(":nth-child(5)").text()
-        var jumlah_penumpang = tr.children(":nth-child(6)").text()
+        var idBis = tr.children(":nth-child(2)").text()
+        var jumlahKursi = tr.children(":nth-child(3)").text()
+  
 
-        $("#id_pesanan").attr("value",idPesanan)
-        $("#nama_pemesan").val(nama_pemesan)
-        $("#no_telp").attr("value",no_telp)
-        $("#email").attr("value",email)
-        $("#jumlah_penumpang").attr("value",jumlah_penumpang)
+        $("#id_bis").attr("value",idBis)
+        $("#jumlah_kursi").val(jumlahKursi)
+     
     });
 
 </script>
