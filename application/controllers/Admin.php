@@ -300,6 +300,49 @@
             }
 
         }
-
+        public function pembayaran(){
+            // kondisi untuk mengecek apakah user sudah login atau belum
+            if($this->session->userdata("login")){
+                // mengambil data tiket dari database melalui model Admin_model dan menyimpan di array bernama data[tiket]
+                $data["pembayaran"] = $this->Admin_model->getDataPembayaran();
+                
+                // fungsi untuk menampilkan header/navbar dari folder templates
+                $this->load->view("templates/headerAdmin");
+                // fungsi untuk menampilkan halaman tiket dari folder admin, dan mengoper array bernama data agar data dapat dipanggil di halaman tiket
+                $this->load->view("Admin/pembayaran",$data);
+                // fungsi untuk menampilkan header/navbar dari folder templates
+                $this->load->view("templates/footer");
+            }else{
+                // mengarahkan ke halaman login jika admin belum melakukan login.
+                redirect("Admin/login");
+            }
+        }
+        public function tambahDataPembayaran(){
+            if($this->session->userdata("login")){
+                if($this->Admin_model->tambahDataPembayaran()){
+                    $this->session->set_flashdata("succNotice","Data Tiket Berhasil Ditambahkan!");
+                    redirect("Admin/pembayaran");
+                }else{
+                    $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                    redirect("Admin/pembayaran");
+                }
+            }else{
+                redirect("Admin/login");
+            }
+        }
+        public function mengubahDataPembayaran(){
+            if($this->session->userdata("login")){  
+                $idPembayaran = $this->input->post("id_pembayaran");
+                if($this->Admin_model->mengubahDataPembayaran($idPembayaran)){
+                    $this->session->set_flashdata("succNotice","Data Tiket Berhasil Diubah");
+                    redirect("Admin/pembayaran");
+                }else{
+                    $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                    redirect("Admin/pembayaran");
+                }
+            }else{
+                redirect("Admin/login");
+            }
+        }
     }
 ?>

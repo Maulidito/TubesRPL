@@ -127,5 +127,39 @@
             $query = $this->db->get_where("kursi",array("id_bis"=>$idBis));
             return $query->result_array();
         }
+
+        public function getDataPembayaran(){
+            // menetapkan query mysql untuk mengambil seluruh data tiket dari tabel tiket
+            $query = $this->db->get("pembayaran");
+            // mengembalikkan semua data dari query yang telah dijalankan
+            return $query->result_array();
+        }
+        public function tambahDataPembayaran(){
+            $pembayaran = [
+                "id_pembayaran" => $this->input->post("id_pembayaran"),
+                "id_pesanan" => $this->input->post("id_pesanan"),
+                "nama_pengirim" => $this->input->post("nama_pengirim"),
+                "nomor_rekening" => $this->input->post("nomor_rekening"),
+                "total_pembayaran" => $this->input->post("total_pembayaran"),
+                "tgl_pembayaran" => $this->input->post("tgl_pembayaran"),
+                "status_pembayaran" => $this->input->post("status_pembayaran")
+            ];
+
+            return $this->db->insert("pembayaran",$pembayaran);
+        }
+        public function mengubahDataPembayaran($idPembayaran){
+            $pembayaran = [
+                "id_pesanan" => $this->input->post("id_pesanan"),
+                "nama_pengirim" => $this->input->post("nama_pengirim"),
+                "nomor_rekening" => $this->input->post("nomor_rekening"),
+                "total_pembayaran" => $this->input->post("total_pembayaran"),
+                "tgl_pembayaran" => $this->input->post("tgl_pembayaran"),
+                "status_pembayaran" => $this->input->post("status_pembayaran")
+            ];
+
+            $this->db->set($pembayaran);
+            $this->db->where('id_pembayaran', $idPembayaran);
+            return $this->db->update('pembayaran');
+        }
     }
 ?>
