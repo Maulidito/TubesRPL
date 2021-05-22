@@ -165,18 +165,19 @@
 
 public function mengubahDataKursi($idKursi){
     $kursi = [
-        "nomor_kursi" => $this->input->post("nomor_kursi"),
+        "nomor_kursi" => $this->input->post("nomor_kursi")
     ];
+    
     $this->db->set($kursi);
-    $this->db->where('id_kursi', $idKursi);
+    $this->db->where('nomor_kursi', $idKursi);
     return $this->db->update('kursi');
 }
 
-public function menghapusDataKursi($nomor_kursi,$id_bis){
+public function menghapusDataKursi($nomor_kursi){
     if($this->db->delete("kursi",array("nomor_kursi" => $nomor_kursi))) {
-        if ($this->db->delete("kursi",array("id_bis" => $id_bis))){
+        
             return true;
-        }
+        
     }else{
         return false;
     }              

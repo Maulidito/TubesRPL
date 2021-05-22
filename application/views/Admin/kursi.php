@@ -1,19 +1,13 @@
 <div class="container">
     <!-- Judul dari halaman -->
     <div class="headerAdmin">
-        <h1>Data Kursi di Bis <?=$this->uri->segment(3)?></h1>
+        <h1>Data Kursi di Bis <?=$this->session->userdata("id_bis")?></h1>
     </div>
 
     <!-- tag div untuk kerangka konten dari halaman -->
     <div class="contentAdmin">
         <div class="searchDanTambah d-flex flex-row">
-            <!-- form search -->
-            <form action="" class="p-2">
-                <div class="form-inline">
-                    <input type="text" class="form-control" placeholder="Cari">&nbsp;
-                    <input type="submit" value="Cari" class="btn btn-primary btn-blue">
-                </div>
-            </form>
+  
             <!-- Button tambah data -->
             <div class="p-2 ml-auto">
                 <a href="" class="btn btn-primary btn-blue" data-target="#modalTambah" data-toggle="modal">Tambah Data</a>
@@ -39,7 +33,7 @@
                     <td><?= $data["nomor_kursi"] ?></td>
                     
                   
-                    <td><button data-toggle="modal" data-target="#modalUpdate" class="btn btn-warning text-white btnUpdate">Update</button>&nbsp;<a href="<?=base_url("admin/menghapusDataKursi/$data[id_bis]")?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin')">Delete</a></td>
+                    <td><button data-toggle="modal" data-target="#modalUpdate" class="btn btn-warning text-white btnUpdate">Update</button>&nbsp;<a href="<?=base_url("admin/menghapusDataKursi/$data[nomor_kursi]")?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin')">Delete</a></td>
                 </tr>
             <?php 
                 $i++;
@@ -62,7 +56,7 @@
         <?= form_open("Admin/tambahDataKursi") ?>
         <div class="form-group">
             <label>Id Bis</label>
-            <input type="text" class="form-control"  name="id_bis" id="id_bis" value ="<?=$this->uri->segment(3)?>"readonly>
+            <input type="text" class="form-control"  name="id_bis" id="id_bis" value ="<?=$this->session->userdata("id_bis")?>"readonly>
         </div>
         <div class="form-group">
             <label>Nomor Kursi</label>
@@ -93,11 +87,12 @@
         <?= form_open("Admin/mengubahDataKursi") ?>
         <div class="form-group">
             <label>Id Bis</label>
-            <input type="text" class="form-control"  name="id_bis" id="id_bis" value ="<?=$this->uri->segment(3)?>"readonly>
+            <input type="text" class="form-control"  name="id_bis" id="id_bis" value ="<?=$this->session->userdata("id_bis")?>"readonly>
         </div>
         <div class="form-group">
             <label>Nomor Kursi</label>
             <input type="text" class="form-control" name="nomor_kursi" id="nomor_kursi"  >
+            <input type="hidden" type="text" class="form-control" name="id_kursi" id="id_kursi"  >
         </div>
      
         <div class="modal-footer">
@@ -116,10 +111,12 @@
         // mengambil data yang ada di tabel
         var idBis = tr.children(":nth-child(2)").text()
         var nomorKursi = tr.children(":nth-child(2)").text()
+        var idKursi = tr.children(":nth-child(2)").text()
   
 
         $("#id_bis").attr("value",idBis)
         $("#nomor_kursi").val(nomorKursi)
+        $("#id_kursi").val(idKursi)
      
     });
 

@@ -234,7 +234,8 @@
               if($this->session->userdata("login")){
                 // mengambil data tiket dari database melalui model Admin_model dan menyimpan di array bernama data[tiket]
                 $data["kursi"] = $this->Admin_model->getDataKursi($idBis);
-
+                $this->session->set_userdata("id_bis",$idBis);
+             
                 // fungsi untuk menampilkan header/navbar dari folder templates
                 $this->load->view("templates/headerAdmin");
                 // fungsi untuk menampilkan halaman tiket dari folder admin, dan mengoper array bernama data agar data dapat dipanggil di halaman tiket
@@ -293,10 +294,10 @@
         if($this->session->userdata("login")){
             if($this->Admin_model->tambahDataKursi()){
                 $this->session->set_flashdata("succNotice","Data Kursi Berhasil Ditambahkan!");
-                redirect("Admin/kursi");
+                redirect("Admin/kursi/".$this->session->userdata("id_bis"));
             }else{
                 $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/kursi");
+                redirect("Admin/kursi/".$this->session->userdata("id_bis"));
             }
         }else{
             redirect("Admin/login");
@@ -306,12 +307,14 @@
     public function mengubahDataKursi(){
         if($this->session->userdata("login")){  
             $idKursi = $this->input->post("id_kursi");
-            if($this->Admin_model->mengubahDataBis($idKursi)){
+            
+            if($this->Admin_model->mengubahDataKursi($idKursi)){
                 $this->session->set_flashdata("succNotice","Data Kursi Berhasil Diubah");
-                redirect("Admin/kursi");
+                
+                redirect("Admin/kursi/".$this->session->userdata("id_bis"));
             }else{
                 $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                redirect("Admin/kursi");
+                redirect("Admin/kursi/".$this->session->userdata("id_bis"));
             }
         }else{
             redirect("Admin/login");
@@ -320,12 +323,12 @@
 
 
 public function menghapusDataKursi($idKursi){
-    if($this->Admin_model->menghapusDataBis($idKursi)){
+    if($this->Admin_model->menghapusDataKursi($idKursi)){
         $this->session->set_flashdata("succNotice","Data Kursi Berhasil Dihapus");
-        redirect("Admin/Kursi");
+        redirect("Admin/kursi/".$this->session->userdata("id_bis"));
     }else{
         $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-        redirect("Admin/Kursi");
+        redirect("Admin/kursi/".$this->session->userdata("id_bis"));
     }
 }
 public function pembayaran(){
