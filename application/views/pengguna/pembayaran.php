@@ -21,6 +21,8 @@
                 </div>
                 <div class="bodyInfoTiket bodyPembayaran">
                     <h1 class="text-success">Konfirmasi Pembayaran Berhasil Dikirim. Kami Akan Mengkonfirmasi Tiket Anda Melalu Telepon dan Email.</h1>
+                    <h5 class="text-muted">klik button dibawah untuk menghilangkan halaman notifikasi ini. (halaman akan dihapus dan tidak akan bisa dilihat lagi, pastikan anda sudah melakukan screen shoot untuk halaman ini)</h5>
+                    <a href="<?= base_url("pesanTiket/hilangkanNotifikasi") ?>" class="btn btn-warning text-white" onclick="return confirm('Apakah anda yakin?')">Hilangkan Notifikasi</a>
                 </div>
             </div>
             <?php endif; ?>

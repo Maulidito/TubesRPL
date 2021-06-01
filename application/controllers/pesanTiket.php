@@ -85,21 +85,31 @@
         }
         
         public function pembayaran(){
-            $data["tiket"] = $this->Main_Model->getPesanan($this->session->userdata("id_pesanan")); 
-            
-            $this->load->view("templates/header");
-            $this->load->view("pengguna/pembayaran",$data);
-            $this->load->view("templates/footer");
+            if($this->session->userdata("id_pesanan")){
+                $data["tiket"] = $this->Main_Model->getPesanan($this->session->userdata("id_pesanan")); 
+                
+                $this->load->view("templates/header");
+                $this->load->view("pengguna/pembayaran",$data);
+                $this->load->view("templates/footer");
+            }else{
+                redirect("pesanTiket/index");
+            }
         }
         
         public function konfirmasiPembayaran(){
             if($this->Main_Model->konfirmasiPembayaran($this->session->userdata("id_pesanan"))){
                 $this->session->set_userdata("konfirmasiPembayaran",true);
                 redirect("pesanTiket/pembayaran");
-            }else{
-
             }
+        }
 
+        public function hilangkanNotifikasi(){
+            if($this->session->userdata("konfirmasiPembayaran") != null){
+                $this->session->sess_destroy();
+                redirect("pesanTiket/index");
+            }else{
+                redirect("pesanTiket/pembayaran");
+            }
         }
 
         public function batalPembayaran($idPesanan){

@@ -39,10 +39,10 @@
                                 <h5>Harga</h5>
                                 <h5 class="text-primary">Rp.<?= number_format($data['harga']) ?></h5>
                             </div>
-                            <div class="col">
+                            <!-- <div class="col">
                                 <h5>Kursi Kosong</h5>
                                 <h5 class="text-primary">40</h5>
-                            </div>
+                            </div> -->
                             <div class="col">
                                 <a href="<?= base_url("pesanTiket/formPemesanan/$data[id_tiket]/$keyPencarian[tanggal]/$keyPencarian[penumpang]") ?>" class="btn btn-primary">Pilih</a>
                             </div>
