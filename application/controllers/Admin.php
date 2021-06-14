@@ -6,6 +6,7 @@
                 $this->load->model("Admin_model");
                 $this->load->library("form_validation");
                 $this->load->helper("Custom");
+                $this->load->library("unit_test");
         }
 
         // index = tiket
@@ -58,7 +59,11 @@
         }
 
         public function menghapusDataTiket($idTiket){
-            if($this->Admin_model->menghapusDataTiket($idTiket)){
+            $idPesanan = $this->Admin_model->getPesananByIdTiket($idTiket);
+            // echo "<pre>";
+            // print_r($idPesanan);
+            // echo "</pre>";
+            if($this->Admin_model->menghapusDataTiket($idTiket,$idPesanan)){
                 $this->session->set_flashdata("succNotice","Data Tiket Berhasil Dihapus");
                 redirect("Admin/index");
             }else{
@@ -152,13 +157,6 @@
                 redirect("Admin/login");
             }
         }
-
-     
-
-   
-  
-
-      
 
         public function pesanan(){
             // kondisi untuk mengecek apakah user sudah login atau belum
@@ -322,60 +320,69 @@
     }
 
 
-public function menghapusDataKursi($idKursi){
-    if($this->Admin_model->menghapusDataKursi($idKursi)){
-        $this->session->set_flashdata("succNotice","Data Kursi Berhasil Dihapus");
-        redirect("Admin/kursi/".$this->session->userdata("id_bis"));
-    }else{
-        $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-        redirect("Admin/kursi/".$this->session->userdata("id_bis"));
+    public function menghapusDataKursi($idKursi){
+        if($this->Admin_model->menghapusDataKursi($idKursi)){
+            $this->session->set_flashdata("succNotice","Data Kursi Berhasil Dihapus");
+            redirect("Admin/kursi/".$this->session->userdata("id_bis"));
+        }else{
+            $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+            redirect("Admin/kursi/".$this->session->userdata("id_bis"));
+        }
     }
-}
-public function pembayaran(){
-    // kondisi untuk mengecek apakah user sudah login atau belum
-    if($this->session->userdata("login")){
-        // mengambil data tiket dari database melalui model Admin_model dan menyimpan di array bernama data[tiket]
-        $data["pembayaran"] = $this->Admin_model->getDataPembayaran();
+    public function pembayaran(){
+        // kondisi untuk mengecek apakah user sudah login atau belum
+        if($this->session->userdata("login")){
+            // mengambil data tiket dari database melalui model Admin_model dan menyimpan di array bernama data[tiket]
+            $data["pembayaran"] = $this->Admin_model->getDataPembayaran();
 
-        // fungsi untuk menampilkan header/navbar dari folder templates
-        $this->load->view("templates/headerAdmin");
-        // fungsi untuk menampilkan halaman tiket dari folder admin, dan mengoper array bernama data agar data dapat dipanggil di halaman tiket
-        $this->load->view("Admin/pembayaran",$data);
-        // fungsi untuk menampilkan header/navbar dari folder templates
-        $this->load->view("templates/footer");
-    }else{
-        // mengarahkan ke halaman login jika admin belum melakukan login.
-        redirect("Admin/login");
-    }
-}
-public function tambahDataPembayaran(){
-    if($this->session->userdata("login")){
-        if($this->Admin_model->tambahDataPembayaran()){
-            $this->session->set_flashdata("succNotice","Data Tiket Berhasil Ditambahkan!");
-            redirect("Admin/pembayaran");
+            // fungsi untuk menampilkan header/navbar dari folder templates
+            $this->load->view("templates/headerAdmin");
+            // fungsi untuk menampilkan halaman tiket dari folder admin, dan mengoper array bernama data agar data dapat dipanggil di halaman tiket
+            $this->load->view("Admin/pembayaran",$data);
+            // fungsi untuk menampilkan header/navbar dari folder templates
+            $this->load->view("templates/footer");
         }else{
-            $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-            redirect("Admin/pembayaran");
+            // mengarahkan ke halaman login jika admin belum melakukan login.
+            redirect("Admin/login");
         }
-    }else{
-        redirect("Admin/login");
     }
-}
-public function mengubahDataPembayaran(){
-    if($this->session->userdata("login")){  
-        $idPembayaran = $this->input->post("id_pembayaran");
-        if($this->Admin_model->mengubahDataPembayaran($idPembayaran)){
-            $this->session->set_flashdata("succNotice","Data Tiket Berhasil Diubah");
-            redirect("Admin/pembayaran");
+    public function tambahDataPembayaran(){
+        if($this->session->userdata("login")){
+            if($this->Admin_model->tambahDataPembayaran()){
+                $this->session->set_flashdata("succNotice","Data Tiket Berhasil Ditambahkan!");
+                redirect("Admin/pembayaran");
+            }else{
+                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                redirect("Admin/pembayaran");
+            }
         }else{
-            $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-            redirect("Admin/pembayaran");
+            redirect("Admin/login");
         }
-    }else{
-        redirect("Admin/login");
     }
-}
-    
+    public function mengubahDataPembayaran(){
+        if($this->session->userdata("login")){  
+            $idPembayaran = $this->input->post("id_pembayaran");
+            if($this->Admin_model->mengubahDataPembayaran($idPembayaran)){
+                $this->session->set_flashdata("succNotice","Data Tiket Berhasil Diubah");
+                redirect("Admin/pembayaran");
+            }else{
+                $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
+                redirect("Admin/pembayaran");
+            }
+        }else{
+            redirect("Admin/login");
+        }
+    }
+    // untuk melakukan test method pada praktikum
+    // public function testMethodGetKursi(){
+    //     $test = $this->Admin_model->getDataKursi("");
+
+    //     $expected_result = 'is_array';
+
+    //     $test_name = 'Test method get kursi';
+
+    //     echo $this->unit->run($test, $expected_result, $test_name);
+    // }
 
 }
 ?>

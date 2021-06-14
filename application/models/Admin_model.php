@@ -43,7 +43,16 @@
             return $this->db->update('tiket');
         }
         
-        public function menghapusDataTiket($idTiket){
+        public function menghapusDataTiket($idTiket,$idPesanan){
+            if($idPesanan != null){
+                $this->db->delete("detail_pesanan",array("id_tiket" => $idTiket));
+                // menghapus id pesanan karena id pesanan bisa lebih dari 1 ,jadi harus dilakukan looping
+                foreach($idPesanan as $row){
+                    $this->db->delete('pesanan',array("id_pesanan" => $row['id_pesanan']));
+                }
+                return $this->db->delete("tiket",array("id_tiket" => $idTiket));
+            }
+            
             return $this->db->delete("tiket",array("id_tiket" => $idTiket));
         }
 
@@ -110,6 +119,12 @@
             // mengembalikkan semua data dari query yang telah dijalankan
             return $query->result_array();
         }
+
+        public function getPesananByIdTiket($idTiket){
+            $this->db->select("id_pesanan");
+            $query = $this->db->get_where('detail_pesanan',array("id_tiket" => $idTiket));
+            return $query->result_array();
+        }
         
         public function getDetailPesanan($id_pesanan){
             // menetapkan query mysql untuk mengambil seluruh data tiket dari tabel tiket
@@ -124,9 +139,14 @@
         }
 
         public function getDataKursi($idBis){
-            $query = $this->db->get_where("kursi",array("id_bis"=>$idBis));
-            return $query->result_array();
+            if($idBis == null){
+                return false;
+            }else{
+                $query = $this->db->get_where("kursi",array("id_bis"=>$idBis));
+                return $query->result_array();
+            }
         }
+
         public function tambahDataBis(){
             $bis = [
                 "id_bis" => $this->input->post("id_bis"),

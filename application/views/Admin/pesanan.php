@@ -7,13 +7,6 @@
     <!-- tag div untuk kerangka konten dari halaman -->
     <div class="contentAdmin">
         <div class="searchDanTambah d-flex flex-row">
-            <!-- form search -->
-            <form action="" class="p-2">
-                <div class="form-inline">
-                    <input type="text" class="form-control" placeholder="Cari">&nbsp;
-                    <input type="submit" value="Cari" class="btn btn-primary btn-blue">
-                </div>
-            </form>
             <!-- Button tambah data -->
             <div class="p-2 ml-auto">
                 <button href="" class="btn btn-primary btn-blue" data-toggle="modal" data-target="#modalTambah">Tambah Data</button>

@@ -6,16 +6,6 @@
 
     <!-- tag div untuk kerangka konten dari halaman -->
     <div class="contentAdmin">
-        <div class="searchDanTambah d-flex flex-row">
-            <!-- form search -->
-            <form action="" class="p-2">
-                <div class="form-inline">
-                    <input type="text" class="form-control" placeholder="Cari">&nbsp;
-                    <input type="submit" value="Cari" class="btn btn-primary btn-blue">
-                </div>
-            </form>
-        </div>
-
         <!-- Tabel untuk menampilkan data tiket -->
         <table class="table text-center mt-4">
             <!-- heading dari tabel -->
