@@ -70,7 +70,14 @@
         </div>
         <div class="form-group">
             <label>Id Pesanan</label>
-            <input type="text" class="form-control" name="id_pesanan" placeholder="id_pesanan">
+            <select name="id_pesanan" id="id_pesanan" class="form-control">
+                <option value="">Pilih</option>
+                <?php
+                    foreach($pesanan as $id_pesanan){
+                        echo "<option value='$id_pesanan[id_pesanan]'>$id_pesanan[id_pesanan]</option>";
+                    }
+                ?>
+            </select>
         </div>
         <div class="form-group">
             <label>Nama Pengirim</label>
@@ -86,7 +93,7 @@
         </div>
         <div class="form-group">
             <label>Tanggal Pembayaran</label>
-            <input type="text" class="form-control" name="tgl_pembayaran" placeholder="tgl_pembayaran">
+            <input type="date" class="form-control" name="tgl_pembayaran" placeholder="tgl_pembayaran">
         </div>
         <div class="form-group">
             <label>Status</label>
@@ -120,7 +127,14 @@
         </div>
         <div class="form-group">
             <label>Id Pesanan</label>
-            <input type="text" class="form-control" name="id_pesanan" id="id_pesanan" placeholder="id_pesanan">
+            <select name="id_pesanan" id="id_pesanan" class="form-control">
+                <option value="">Pilih</option>
+                <?php
+                    foreach($pesanan as $id_pesanan){
+                        echo "<option value='$id_pesanan[id_pesanan]'>$id_pesanan[id_pesanan]</option>";
+                    }
+                ?>
+            </select>
         </div>
         <div class="form-group">
             <label>Nama Pengirim</label>
@@ -136,7 +150,7 @@
         </div>
         <div class="form-group">
             <label>Tanggal Pembayaran</label>
-            <input type="text" class="form-control" name="tgl_pembayaran" id="tgl_pembayaran" placeholder="tgl_pembayaran">
+            <input type="date" class="form-control" name="tgl_pembayaran" id="tgl_pembayaran" placeholder="tgl_pembayaran">
         </div>
         <div class="form-group">
             <label>Status</label>
@@ -167,7 +181,7 @@
        
 
         $("#id_pembayaran").attr("value",idPembayaran)
-        $("#id_pesanan").val(idPesanan)
+        $("#id_pesanan option[value="+idPesanan+"]").attr('selected','selected')
         $("#nama_pengirim").val(namaPengirim)
         $("#nomor_rekening").attr("value",nomorRekening)
         $("#total_pembayaran").attr("value",totalPembayaran)

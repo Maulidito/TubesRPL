@@ -334,7 +334,8 @@
         if($this->session->userdata("login")){
             // mengambil data tiket dari database melalui model Admin_model dan menyimpan di array bernama data[tiket]
             $data["pembayaran"] = $this->Admin_model->getDataPembayaran();
-
+            $data["pesanan"] = $this->Admin_model->getDataPesanan();
+            
             // fungsi untuk menampilkan header/navbar dari folder templates
             $this->load->view("templates/headerAdmin");
             // fungsi untuk menampilkan halaman tiket dari folder admin, dan mengoper array bernama data agar data dapat dipanggil di halaman tiket
