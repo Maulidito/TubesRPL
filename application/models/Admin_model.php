@@ -166,13 +166,17 @@
     }
 
     public function menghapusDataBis($idBis){
-        if($this->db->delete("bis",array("id_bis" => $idBis))) {
-            if ($this->db->delete("bis",array("id_bis" => $idBis))){
-                return true;
-            }
-        }else{
-            return false;
-        }              
+        if($this->db->get_where("tiket",array("id_bis" => $idBis))){
+            $this->db->set('id_bis', 'NULL');
+            $this->db->where('id_bis', $idBis);
+            $this->db->update('tiket');
+        }
+
+        if($this->db->get_where("kursi",array("id_bis" => $idBis))->result_array()){
+            $this->db->delete("kursi",array("id_bis" => $idBis));
+        }
+
+        return $this->db->delete("bis",array("id_bis" => $idBis));   
     }
 
     public function tambahDataKursi(){

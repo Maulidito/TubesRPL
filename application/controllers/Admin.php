@@ -217,10 +217,10 @@
                 $idPesanan = $this->input->post("id_pesanan");
                 if($this->Admin_model->mengubahDetailPesanan($idPesanan)){
                     $this->session->set_flashdata("succNotice","Detail Pesanan Berhasil Diubah");
-                    redirect("Admin/detail_pesanan/$id_pesanan");
+                    redirect("Admin/detail_pesanan/$id_pesanan/$idPesanan");
                 }else{
                     $this->session->set_flashdata("errNotice","Maaf, Terjadi Error di database");
-                    redirect("Admin/detail_pesanan/$id_pesanan");
+                    redirect("Admin/detail_pesanan/$id_pesanan/$idPesanan");
                 }
             }else{
                 redirect("Admin/login");

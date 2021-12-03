@@ -62,7 +62,7 @@
                         <button type="button" class="btn btn-primary btn-blue font-weight-bold mr-1" data-toggle="modal" data-target="#exampleModalCenter">
                             Konfirmasi Pembayaran
                         </button>
-                        <a href="<?= site_url("pesanTiket/batalPembayaran/$tiket[id_pesanan]") ?>" class="btn btn-danger font-weight-bold">Batal</a>
+                        <a href="<?= site_url("pesanTiket/batalPembayaran/$tiket[id_pesanan]") ?>" class="btn btn-danger font-weight-bold" onclick="return confirm('Apakah anda yakin?')">Batal</a>
                     </div>
                     <?php endif; ?>
                 </div>

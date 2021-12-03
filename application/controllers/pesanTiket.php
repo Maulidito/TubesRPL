@@ -115,6 +115,7 @@
         public function batalPembayaran($idPesanan){
             if($this->Main_Model->batalPembayaran($idPesanan)){
                 $this->session->unset_userdata("pesanan");
+                $this->session->unset_userdata("id_pesanan");
                 redirect("pesanTiket/index");
             }
         }
