@@ -44,7 +44,9 @@
         }
         
         public function menghapusDataTiket($idTiket,$idPesanan){
+
             if($idPesanan != null){
+                $this->db->delete("pembayaran",array("id_pesanan" => $idPesanan));
                 $this->db->delete("detail_pesanan",array("id_tiket" => $idTiket));
                 // menghapus id pesanan karena id pesanan bisa lebih dari 1 ,jadi harus dilakukan looping
                 foreach($idPesanan as $row){

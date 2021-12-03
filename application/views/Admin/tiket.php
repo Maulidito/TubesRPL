@@ -173,7 +173,7 @@
         $("#kota_asal").attr("value",asal)
         $("#kota_tujuan").attr("value",tujuan)
         $("#jam_keberangkatan").attr("value",keberangkatan)
-        $("#harga").attr("value",parseInt(hargaNum))
+        $("#harga").attr("value",parseInt(hargaNum.match(/\d/g).join("")))
     });
 
 </script>
